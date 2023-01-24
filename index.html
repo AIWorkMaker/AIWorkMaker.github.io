@@ -2,75 +2,45 @@
 <html>
   <head>
     <title>Homework Generator</title>
-  </head>
-  <body>
-    <h1>Homework Generator</h1>
-    <select id="yearSelect">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <!-- Add more options for each year -->
-    </select>
-    <select id="subjectSelect">
-      <option value="Math">Math</option>
-      <option value="Reading">Reading</option>
-      <!-- Add more options for each subject -->
-    </select>
-    <table id="homeworkTable">
-      <tr>
-        <th>Year</th>
-        <th>Subject</th>
-        <th>Homework/Work</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Math</td>
-        <td>Practice addition and subtraction with numbers up to 20.</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Reading</td>
-        <td>Read a short story and answer comprehension questions.</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Math</td>
-        <td>Practice multiplication and division with numbers up to 12.</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Reading</td>
-        <td>Read a chapter of a book and answer comprehension questions.</td>
-      </tr>
-      <!-- Add more rows for each year and subject -->
-    </table>
-
     <script>
-      // Add event listeners to the year and subject select elements
-      document.getElementById("yearSelect").addEventListener("change", updateHomeworkTable);
-      document.getElementById("subjectSelect").addEventListener("change", updateHomeworkTable);
+    // Define an array of questions for each year and subject
+    var questions = {
+        "1": {
+          "Math": ["What is 2+3?", "What is 5-2?", "What is 8+9?"],
+          "Reading": ["What is the main character's name?", "What is the story about?", "What is the climax of the story?"]
+        },
+        "2": {
+          "Math": ["What is 3*4?", "What is 6/2?", "What is 12-5?"],
+          "Reading": ["What is the setting of the story?", "What is the main theme?", "What is the resolution of the story?"]
+        }
+        // Add more questions for each year and subject
+    };
 
-      function updateHomeworkTable() {
+    function updateHomework() {
         // Get the selected year and subject
         var year = document.getElementById("yearSelect").value;
         var subject = document.getElementById("subjectSelect").value;
-
-        // Get the homework table
-        var homeworkTable = document.getElementById("homeworkTable");
-
-        // Loop through all the rows in the table
-        for (var i = 1; i < homeworkTable.rows.length; i++) {
-          var row = homeworkTable.rows[i];
-
-          // Check if the row's year and subject match the selected year and subject
-          if (row.cells[0].innerHTML == year && row.cells[1].innerHTML == subject) {
-            // If they match, show the row
-            row.style.display = "table-row";
-          } else {
-            // If they don't match, hide the row
-            row.style.display = "none";
-          }
-        }
-      }
+        // Get the list of questions for the selected year and subject
+        var questionList = questions[year][subject];
+        // Get a random question from the list
+        var randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
+        // Get the question element
+        var questionElement = document.getElementById("question");
+        // Update the question element with the random question
+        questionElement.innerHTML = randomQuestion;
+    }
     </script>
+  </head>
+  <body>
+    <h1>Homework Generator</h1>
+    <select id="yearSelect" onchange="updateHomework()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <select id="subjectSelect" onchange="updateHomework()">
+        <option value="Math">Math</option>
+        <option value="Reading">Reading</option>
+    </select>
+    <div id="question"></div>
   </body>
 </html>
