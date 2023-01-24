@@ -4,45 +4,22 @@
     <title>Homework Generator</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
-    <script>
-    // Define an array of questions for each year and subject
-    var questions = {
-        "1": {
-          "Math": ["What is 2+3?", "What is 5-2?", "What is 8+9?"],
-          "Reading": ["What is the main character's name?", "What is the story about?", "What is the climax of the story?"]
-        },
-        "2": {
-          "Math": ["What is 3*4?", "What is 6/2?", "What is 12-5?"],
-          "Reading": ["What is the setting of the story?", "What is the main theme?", "What is the resolution of the story?"]
-        }
-        // Add more questions for each year and subject
-    };
-
-    function updateHomework() {
-        // Get the selected year and subject
-        var year = document.getElementById("yearSelect").value;
-        var subject = document.getElementById("subjectSelect").value;
-        // Get the list of questions for the selected year and subject
-        var questionList = questions[year][subject];
-        // Get a random question from the list
-        var randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
-        // Get the question element
-        var questionElement = document.getElementById("question");
-        // Update the question element with the random question
-        questionElement.innerHTML = randomQuestion;
-    }
-    </script>
   </head>
   <body>
     <h1>Homework Generator</h1>
+    <label for="yearSelect">Select a Year:</label>
     <select id="yearSelect" onchange="updateHomework()">
-        <option value="1">1</option>
-        <option value="2">2</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
     </select>
+    <label for="subjectSelect">Select a Subject:</label>
     <select id="subjectSelect" onchange="updateHomework()">
-        <option value="Math">Math</option>
-        <option value="Reading">Reading</option>
+      <option value="Math">Math</option>
+      <option value="Reading">Reading</option>
     </select>
     <div id="question"></div>
+    <div id="answer"></div>
+    <div id="story"></div>
   </body>
 </html>
